@@ -1,0 +1,14 @@
+'use strict';
+console.clear();
+
+import app from './app';
+import { PORT } from './config';
+
+export const server = app.listen(PORT, () => {
+  console.log(
+    'App is running at http://localhost:%d in %s mode',
+    PORT,
+    app.get('env')
+  );
+  console.log('  Press CTRL+C to stop\n');
+});
