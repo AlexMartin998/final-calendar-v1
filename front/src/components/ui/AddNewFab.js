@@ -7,7 +7,7 @@ import { eventCleanActiveEvent } from '../../actions/calendarEvents';
 export const AddNewFab = () => {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleClick = e => {
     dispatch(uiOpenModal());
     dispatch(eventCleanActiveEvent());
   };

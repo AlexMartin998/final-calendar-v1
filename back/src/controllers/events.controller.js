@@ -77,6 +77,10 @@ export const deleteCalendarEvent = async (req, res = response) => {
   try {
     const { id } = req.params;
 
+    const calendarEvent = await CalendarEvent.findById(id);
+    if (calendarEvent.user.toString() !== req.authenticatedUser.id)
+      return res.status(401).json({ ok: false, msg: 'Unauthorized!' });
+
     await CalendarEvent.findByIdAndDelete(id);
 
     res.status(200).json({

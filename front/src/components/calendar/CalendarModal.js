@@ -8,9 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import './../../styles.css';
 import { uiCloseModal } from '../../actions/ui';
 import {
-  eventAddNew,
   eventCleanActiveEvent,
-  eventUpdated,
+  eventStartAddNew,
+  eventStartUpdate,
 } from '../../actions/calendarEvents';
 
 const customStyles = {
@@ -103,20 +103,10 @@ export const CalendarModal = () => {
 
     if (title.trim().length < 2) return setTitleValid(false);
 
-    if (activeEvent) dispatch(eventUpdated(formValues));
+    if (activeEvent) dispatch(eventStartUpdate(formValues));
     else {
-      // TODO: Grabar en DB
-      dispatch(
-        eventAddNew({
-          ...formValues,
-          id:
-            Math.random().toString(32).replace('.', '') + new Date().getTime(),
-          user: {
-            _id: Math.random().toString(32).replace('.', ''),
-            name: 'Alex pro - crea la new note',
-          },
-        })
-      );
+      // Grabar en DB
+      dispatch(eventStartAddNew(formValues));
     }
 
     setTitleValid(true);
