@@ -20,6 +20,7 @@ var app = (0, _express["default"])(); // Middlewares
 
 (0, _setup.setupMiddlewares)(app); // Routes
 
+app.route('/');
 app.use('/api/auth', _routes.authRoutes);
 app.use('/api/events', _routes.calendarEventsRoutes);
 var _default = app;

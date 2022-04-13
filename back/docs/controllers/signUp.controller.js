@@ -105,7 +105,11 @@ var login = /*#__PURE__*/function () {
             res.status(200).json({
               ok: true,
               msg: 'Successful login!',
-              token: token
+              token: token,
+              user: {
+                uid: user.id,
+                name: user.name
+              }
             });
 
           case 7:
@@ -134,7 +138,11 @@ var renewJwt = function renewJwt(req) {
   var token = (0, _helpers.createJwt)(authenticatedUser.id);
   res.status(200).json({
     ok: true,
-    token: token
+    token: token,
+    user: {
+      uid: authenticatedUser.id,
+      name: authenticatedUser.name
+    }
   });
 };
 

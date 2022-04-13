@@ -208,6 +208,7 @@ var deleteCalendarEvent = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req) {
     var res,
         id,
+        calendarEvent,
         _args4 = arguments;
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
@@ -217,17 +218,34 @@ var deleteCalendarEvent = /*#__PURE__*/function () {
             _context4.prev = 1;
             id = req.params.id;
             _context4.next = 5;
-            return _models.CalendarEvent.findByIdAndDelete(id);
+            return _models.CalendarEvent.findById(id);
 
           case 5:
+            calendarEvent = _context4.sent;
+
+            if (!(calendarEvent.user.toString() !== req.authenticatedUser.id)) {
+              _context4.next = 8;
+              break;
+            }
+
+            return _context4.abrupt("return", res.status(401).json({
+              ok: false,
+              msg: 'Unauthorized!'
+            }));
+
+          case 8:
+            _context4.next = 10;
+            return _models.CalendarEvent.findByIdAndDelete(id);
+
+          case 10:
             res.status(200).json({
               ok: true
             });
-            _context4.next = 12;
+            _context4.next = 17;
             break;
 
-          case 8:
-            _context4.prev = 8;
+          case 13:
+            _context4.prev = 13;
             _context4.t0 = _context4["catch"](1);
             console.log(_context4.t0);
             res.status(500).json({
@@ -235,12 +253,12 @@ var deleteCalendarEvent = /*#__PURE__*/function () {
               msg: 'Something went wrong!'
             });
 
-          case 12:
+          case 17:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[1, 8]]);
+    }, _callee4, null, [[1, 13]]);
   }));
 
   return function deleteCalendarEvent(_x4) {

@@ -16,7 +16,7 @@ var _controllers = require("./../controllers");
 var _helpers = require("../helpers");
 
 var router = (0, _express.Router)();
-router.route('/signup').post([(0, _expressValidator.check)('name', 'Name is Required!').exists(), (0, _expressValidator.check)('email', 'Invalid email').isEmail(), (0, _expressValidator.check)('password', 'Password must be longer than 6 characters.').isLength({
+router.route('/signup').post([(0, _expressValidator.check)('name', 'Name is Required!').not().isEmpty(), (0, _expressValidator.check)('email', 'Invalid email').isEmail(), (0, _expressValidator.check)('password', 'Password must be longer than 6 characters.').isLength({
   min: 6
 }), _middlewares.validateFields, (0, _expressValidator.check)('email').custom(function (email) {
   return (0, _helpers.isAlreadyRegistered)(email, 'user');

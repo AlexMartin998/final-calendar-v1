@@ -13,6 +13,7 @@ const app = express();
 setupMiddlewares(app);
 
 // Routes
+app.route('/');
 app.use('/api/auth', authRoutes);
 app.use('/api/events', calendarEventsRoutes);
 
