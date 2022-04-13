@@ -6,8 +6,6 @@ export const fetchWithoutToken = async (endpoint, data, method = 'GET') => {
   else {
     return await fetch(url, {
       method,
-      mode: 'cors',
-      cache: 'no-cache',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -30,8 +28,6 @@ export const fetchWithToken = async (endpoint, data, method = 'GET') => {
   else {
     return await fetch(url, {
       method,
-      mode: 'cors',
-      cache: 'no-cache',
       headers: {
         'Content-Type': 'application/json',
         'x-token': localStorage.getItem('token') || '',

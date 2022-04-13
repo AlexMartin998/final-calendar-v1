@@ -1,3 +1,4 @@
+# Backend:
   - Production:
     - Crear el script build
       - "build": "babel src -d dist && ncp src/views dist/views && ncp src/public dist/public",
@@ -6,3 +7,9 @@
 
     - package.json: scripts - public/
       "build": "rimraf ./dist && babel ./src -d ./dist && ncp src/public dist/public",
+
+
+# Frontedn:
+  - Production
+    - npm run build
+      - 
